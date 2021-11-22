@@ -1,0 +1,229 @@
+:root {
+    --background-color: rgb(92, 61, 46);
+    --color: rgb(224, 192, 151);
+    /* --color: rgb(92, 61, 46);
+    --background-color: rgb(224, 192, 151); */
+}
+
+.background-image {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--background-color);
+    background-size: 100vw 100vh;
+    z-index: -2;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    transition: background-image .3s linear;
+}
+
+.navigation {
+    color: var(--color);
+    height: 80px;
+    background-color: rgba(92, 61, 46, 0.4);
+    opacity: 0;
+    display: none;
+}
+
+.navigation:hover {
+    background-color: rgba(92, 61, 46, 0.7);
+}
+
+.navigation li,
+.navigation a {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.navigation a:hover {
+    color: rgba(224, 192, 151, 1);
+}
+
+.icon-size {
+    height: 5rem;
+    width: 5rem;
+}
+
+.background-image img {
+    width: 100vw;
+    height: 100vh;
+}
+
+#home {
+    display: flex;
+    background-color: var(--background-color);
+}
+
+.back {
+    color: var(--color);
+    opacity: 0.5;
+    cursor: pointer;
+    position: absolute;
+    text-decoration: none;
+    font-size: 1rem;
+    line-height: 2;
+    width: 8rem;
+    height: 2.5rem;
+    left: 2rem;
+}
+
+.back i {
+    margin-right: 5px;
+    font-size: 17px;
+}
+
+.back:hover {
+    color: var(--color);
+    opacity: 1;
+}
+
+.cafe-info {
+    height: 100%;
+    width: 40%;
+    display: inline-block;
+    color: var(--color);
+    font-size: 1rem;
+}
+
+.info {
+    margin: 5px auto;
+    padding: 0 2rem;
+}
+
+.cafe-info div {
+    text-align: left;
+    margin-bottom: 12px;
+}
+
+.cafe-info h1 {
+    margin: 6rem 0 2rem;
+    text-align: center;
+    font-size: 4rem;
+}
+
+.cafe-address {
+    width: 90%;
+    display: flex;
+    align-content: center;
+    justify-content: left;
+}
+
+.cafe-address i {
+    color: var(--color);
+    display: block;
+    align-self: center;
+    font-size: 1.6rem;
+}
+
+i {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+}
+
+h4 {
+    margin: 3rem 0 1rem;
+    text-align: center;
+}
+
+.cafe-address div {
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+.links div {
+    margin: 0;
+    display: flex;
+    padding: 20px;
+    padding-top: 0;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.links a {
+    text-decoration: none;
+    text-align: center;
+    color: var(--color);
+    background-color: rgba(224, 192, 151, 0);
+    width: 8rem;
+    height: 2.5rem;
+    display: inline-block;
+    line-height: 2;
+    border: 1px solid var(--color);
+    margin: 0.5rem 1.5rem;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.links a:hover {
+    background-color: var(--color);
+    color: var(--background-color);
+}
+
+.carousel-measurements {
+    height: 100%;
+    width: 60%;
+    display: inline-block;
+}
+
+.image {
+    object-fit: contain;
+}
+
+.div-breaker {
+    height: 20vh;
+}
+
+#menu {
+    clip-path: polygon(0 10%, 50% 0, 100% 10%, 100% 90%, 50% 100%, 0 90%);
+}
+
+#menu h3 {
+    padding-top: 5px;
+    color: var(--background-color);
+    font-size: 4rem;
+    text-align: center;
+}
+
+#menu .items-container {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    padding: 1rem 1rem 2rem;
+    max-height: 90vh;
+}
+
+.items {
+    padding: 15px 3rem 0;
+}
+
+@media only screen and (max-width: 1200px) {
+    .items-container {
+        padding: 0.5rem 0;
+    }
+
+    .items {
+        padding: 15px 15px 0;
+    }
+}
+
+.items p {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin: 5px;
+}
+
+.items h5 {
+    text-align: center;
+}
+
+.beverage-name {
+    flex-basis: 75%;
+}
+
+#reviews {
+    clip-path: polygon(0 10%, 50% 0, 100% 10%, 100% 90%, 50% 100%, 0 90%);
+}

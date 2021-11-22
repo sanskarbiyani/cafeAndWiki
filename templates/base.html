@@ -1,0 +1,44 @@
+{# Base Bootstrap template #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    {% block title %}
+    {% endblock %}
+
+    {% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'styles/cafeStyles.css')}}">
+    {% endblock %}
+</head>
+<body>
+    {% block nav %}
+    <div class="container-fluid navigation">
+        <div class="container">
+            <nav class="navbar navbar-expand-sm" style="height: 80px;">
+                <div class="container-fluid">
+                    {% block navbarCafe %}
+                    <span class="nav-brand ms-5" style="color: #E0C097; font-size: 1.8rem;">All Cafe's</span>
+                    {% endblock %}
+                    <form class="d-flex justify-content-end" style="margin-right: 5rem;" action="{{ url_for('get_all_cafe')}}" method="GET">
+                        <input class="form-control me-2" type="search" placeholder="Search cafe.." aria-label="Search" style="border:#E0C097 solid 1px; background-color: #5C3D2E; color: #E0C097;" name="q">
+                        <button class="btn btn-outline-light" type="submit" style="border:#E0C097 solid 1px; background-color: #5C3D2E; color: #E0C097;">Search</button>
+                    </form>
+                </div>
+            </nav>
+        </div>
+    </div>
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -41,7 +41,8 @@ document.getElementsByTagName('body')[0].onscroll = (e) => {
             navBar.style.display = "none";
         }
         const elem = document.querySelector(".background-image");
-        const height = Math.ceil(screenHeight);
+        const height = Math.ceil(screenHeight + 0.3);
+        console.log(screenHeight);
         if (backgroundImages.length >= height){
             elem.lastElementChild.src = backgroundImages[height - 1];
         } else {

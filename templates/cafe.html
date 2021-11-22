@@ -115,56 +115,31 @@
                     {% endif %}
                 </div>
             </div>
-
-            <!-- Links -->
-            <div class="links">
-                <h4>Check it out</h4>
-                <div>
-                    <a href="#menu">
-                        <span>Menu</span>
-                    </a>
-                    <a href="#reviews">
-                        <span>Reviews</span>
-                    </a>
-                    <a href="{{ cafe.contact.website }}">
-                        <span>
-                            Website
-                        </span>
-                    </a>
-                </div>
+        </div>
+        <!-- Links -->
+        <div class="links">
+            <h4>Check it out</h4>
+            <div>
+                <a href="#menu">
+                    <span>Menu</span>
+                </a>
+                <a href="#reviews">
+                    <span>Reviews</span>
+                </a>
+                <a href="{{ cafe.contact.website }}">
+                    <span>
+                        Website
+                    </span>
+                </a>
             </div>
         </div>
     </div>
-    <div id="cafeImages" class="carousel slide carousel-measurements ms-3" data-bs-ride="carousel">
-        <div class="carousel-inner h-100">
-            <div class="carousel-item active text-center h-100">
-            <img src="{{ url_for('static', filename='img/index.jpg') }}" alt="" class="d-inline-block image h-100">
-            </div>
-            <div class="carousel-item text-center h-100">
-            <img src="{{ url_for('static', filename='img/index1.jpg') }}" alt="" class="d-inline-block image h-100">
-            </div>
-            <div class="carousel-item text-center h-100">
-            <img src="{{ url_for('static', filename='img/index3.jpg') }}" alt="" class="d-inline-block image h-100">
-            </div>
-            <div class="carousel-item text-center h-100">
-            <img src="{{ url_for('static', filename='img/index4.jpg') }}" alt="" class="d-inline-block image h-100">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#cafeImages" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon icon-size" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#cafeImages" data-bs-slide="next">
-            <span class="carousel-control-next-icon icon-size" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-        </div>
 </div>
 
 <div class="container-fluid div-breaker"></div>
 
 <!-- Menu -->
-<div class="container" id="menu" style="height: 100vh; background-color: #E0C097;">
+<div class="container" id="menu">
     <h3>Menu</h3>
     <div class="items-container">
         {% for group_name, group in cafe.menu.items() %}
@@ -184,7 +159,7 @@
     </div>
 </div>
 <div class="container-fluid div-breaker"></div>
-<div class="container" id="reviews" style="height: 100vh; background-color: #E0C097;"> Hello</div>
+<div class="container" id="reviews"> Hello</div>
 <script src="{{ url_for('static', filename='js/cafe.js') }}"></script>
 {% endblock %}
 

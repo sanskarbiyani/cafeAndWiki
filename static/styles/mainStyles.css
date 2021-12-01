@@ -1,0 +1,283 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --background-color: rgb(92, 61, 46);
+    --color: rgb(224, 192, 151);
+    /* --color: rgb(92, 61, 46);
+    --background-color: rgb(224, 192, 151); */
+    --header: 'Pacifico', cursive;
+    --section-header: 'Nunito Sans', sans-serif;
+    --normal: 'Caveat', cursive;
+}
+
+body {
+    background-color: rgba(92, 61, 46, 0.95);
+    background-image: url('../img/landingBackground.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-blend-mode: soft-light;
+
+}
+
+/* Landing Page */
+
+.main-container {
+    margin: 10vh auto;
+    height: 80vh;
+    width: 95vw;
+    /* background-color: var(--background-color); */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.search-cafe,
+.register {
+    text-align: center;
+    height: 100%;
+    width: 45%;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    color: var(--color);
+}
+
+.search-cafe div,
+.register div {
+    margin: auto;
+    height: 12rem;
+}
+
+.search-cafe:hover,
+.register:hover {
+    /* opacity: 0.7; */
+    background-color: rgba(92, 61, 46, 0.25);
+}
+
+.main-container span {
+    font-size: 2rem;
+    margin-top: 2rem;
+    display: inline-block;
+    width: 12rem;
+    border: 1px solid var(--color);
+    border-radius: 5px;
+    height: 3.2rem;
+    font-family: var(--normal);
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.main-container span:hover {
+    background-color: var(--color);
+    color: var(--background-color);
+}
+
+.main-container h2 {
+    font-size: 4rem;
+    font-family: var(--header);
+}
+
+.all-cafe {
+    margin-right: 1rem;
+}
+
+.cafe-search {
+    margin-left: 1rem;
+}
+
+/* Search */
+
+#search-container {
+    background-color: rgba(92, 61, 46, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+}
+
+form {
+    width: 40%;
+    height: 80vh;
+    text-align: center;
+    background-color: rgba(224, 192, 151, 0.5);
+    border-radius: 20px;
+    padding: 1.7rem;
+}
+
+input[type=text] {
+    height: 4rem;
+    padding: 0.7rem 1rem;
+    margin-bottom: 1rem;
+    margin-top: 2.2rem;
+    display: inline-block;
+    border: 2px solid var(--background-color);
+    border-radius: 20px;
+    color: var(--color);
+    background-color: rgba(92, 61, 46, 0.15);
+    font-size: 1.8rem;
+    font-family: var(--header);
+    text-align: center;
+}
+
+input[type=text]:focus {
+    height: 4.2rem;
+    outline: none;
+    border: 2.5px solid var(--background-color);
+    border-radius: 20px;
+    background-color: rgba(92, 61, 46, 0.35);
+}
+
+input[type=text]:hover {
+    background-color: rgba(92, 61, 46, 0.35);
+}
+
+input[type=submit] {
+    height: 3rem;
+    width: 55%;
+    background-color: rgba(224, 192, 151, 0.5);
+    color: var(--background-color);
+    border: 1px solid var(--background-color);
+    border-radius: 20px;
+    font-size: 1.4rem;
+    font-family: var(--header);
+}
+
+input[type=submit]:hover {
+    background-color: rgba(92, 61, 46, 0.35);
+}
+
+.error {
+    font-style: italic;
+    color: red;
+    font-family: var(--section-header);
+}
+
+.parameters,
+.search-parameters {
+    margin: 1.3rem auto 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    justify-content: center;
+    border-bottom: 2px solid var(--background-color);
+}
+
+.search-parameters {
+    display: none;
+    margin-top: 0;
+    margin-bottom: 0.8rem;
+}
+
+.parameters p,
+.search-parameters p {
+    margin: 0.2rem;
+    flex-basis: 100%;
+    font-size: 1.4rem;
+    color: var(--background-color);
+    font-family: var(--header);
+    position: relative;
+}
+
+.parameters p::after,
+.search-parameters p::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    top: 2.3rem;
+    left: 0;
+    border: 1px solid var(--background-color);
+}
+
+.parameters span,
+.search-parameters span {
+    margin: 0.8rem 0.7rem;
+    height: 2.2rem;
+    line-height: 1.4;
+    padding: 0.2rem 1rem;
+    border: 2px solid var(--background-color);
+    border-radius: 30px;
+    color: var(--background-color);
+    cursor: pointer;
+}
+
+.parameters span:hover {
+    background-color: rgba(92, 61, 46, 0.2);
+}
+
+/* All Cafe's Options */
+.back {
+    color: var(--color);
+    opacity: 0.5;
+    cursor: pointer;
+    position: absolute;
+    text-decoration: none;
+    font-size: 1.5rem;
+    line-height: 2;
+    width: 8rem;
+    height: 2.5rem;
+    left: 2rem;
+    font-family: var(--normal);
+}
+
+.back i {
+    margin-right: 5px;
+    font-size: 17px;
+}
+
+.back:hover {
+    color: var(--color);
+    opacity: 1;
+}
+
+#cafe-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+#cafe-container h4 {
+    font-family: var(--header);
+    font-size: 1.9rem;
+    color: var(--color);
+}
+
+#cafe-container h6 {
+    font-family: var(--section-header);
+    font-style: italic;
+    font-size: 1.09rem;
+    color: var(--color);
+}
+
+.cafe {
+    width: 18rem;
+    background-color: rgba(92, 61, 46, 0.2);
+    border-radius: 10px;
+}
+
+.cafe-body {
+    position: relative;
+}
+
+.cafe a {
+    font-family: var(--normal);
+    font-size: 1.4rem;
+    position: absolute;
+    bottom: 0.5rem;
+    left: 1rem;
+    display: inline-block;
+    width: 5rem;
+    height: 2.5rem;
+    text-decoration: none;
+    text-align: center;
+    color: var(--color);
+}
+
+.cafe a:hover {
+    text-decoration: underline;
+}

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, request, make_response
 from flask.helpers import send_from_directory
 from flask_bootstrap import Bootstrap
 from bson import json_util
@@ -6,6 +6,9 @@ from bson.objectid import ObjectId
 import pymongo
 from pprint import pprint
 from datetime import datetime
+from pymongo import cursor
+
+from werkzeug.wrappers import response
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "sfdsfasdf546a51afdasdfadf"
@@ -30,7 +33,7 @@ def get_all_cafe():
             "address": cafe["address"]
         }
         cafe_list.append(cafe_record)
-    return render_template('index.html', cafe_list=cafe_list)
+    return render_template('index.html', cafe_list=cafe_list, show_landing=True)
 
 
 @app.route("/cafes/<string:cafe_id>")
@@ -41,7 +44,28 @@ def get_cafe(cafe_id):
 
 @app.get("/picture/<string:name>")
 def get_picture(name):
-    return send_from_directory('static', f'img/{name}')
+    response = make_response(send_from_directory('static', f'img/{name}'))
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+
+
+@app.get("/search")
+def search():
+    q = request.args.getlist('query')[0]
+    search_parameter = request.args.getlist('parameter')[0]
+    cafe_list = []
+    if search_parameter == "Name":
+        cursor = db.cafe.find({"name": q})
+    else:
+        cursor = db.cafe.find({f"address.{search_parameter.lower()}": q})
+    for cafe in cursor:
+        cafe_record = {
+            "name": cafe["name"],
+            "id": str(cafe["_id"]),
+            "address": cafe["address"]
+        }
+        cafe_list.append(cafe_record)
+    return render_template('index.html', cafe_list=cafe_list, show_landing=False)
 
 
 if __name__ == "__main__":

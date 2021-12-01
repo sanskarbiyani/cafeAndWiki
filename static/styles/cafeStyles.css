@@ -3,6 +3,15 @@
     --color: rgb(224, 192, 151);
     /* --color: rgb(92, 61, 46);
     --background-color: rgb(224, 192, 151); */
+    --header: 'Pacifico', cursive;
+    --section-header: 'Nunito Sans', sans-serif;
+    --normal: 'Caveat', cursive;
+}
+
+body {
+    font-family: var(--section-header);
+    font-style: oblique;
+    color: var(--color);
 }
 
 i {
@@ -10,16 +19,43 @@ i {
     font-size: 1.2rem;
 }
 
-h4 {
-    margin: 1rem 0;
-    text-align: center;
-}
-
 h1 {
     margin: 2rem 0;
     text-align: center;
     font-size: 4rem;
     flex-basis: 100%;
+    font-family: var(--header);
+}
+
+h3 {
+    padding-top: 5px;
+    font-size: 4rem;
+    text-align: center;
+    font-family: var(--header);
+}
+
+
+h4 {
+    margin: 1rem 0;
+    text-align: center;
+    font-family: var(--header);
+}
+
+h5 {
+    font-size: 1.8rem;
+    font-family: var(--header);
+    font-weight: bolder;
+}
+
+p {
+    font-size: 1.1rem;
+    font-family: var(--section-header);
+    font-style: oblique;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
 }
 
 /* For static background Image for the website */
@@ -50,6 +86,9 @@ h1 {
     background-color: rgba(92, 61, 46, 0.4);
     opacity: 0;
     display: none;
+    font-family: var(--section-header);
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 .navigation:hover {
@@ -70,6 +109,11 @@ h1 {
     width: 5rem;
 }
 
+.cafe-name {
+    font-family: var(--header);
+    font-size: 1.8rem;
+}
+
 /* Home Sections styling */
 #home {
     display: flex;
@@ -82,11 +126,12 @@ h1 {
     cursor: pointer;
     position: absolute;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 1.5rem;
     line-height: 2;
     width: 8rem;
     height: 2.5rem;
     left: 2rem;
+    font-family: var(--normal);
 }
 
 .back i {
@@ -117,6 +162,7 @@ h1 {
     margin: 5px auto;
     padding: 0 2rem;
     flex-basis: 50%;
+    font-style: oblique;
 }
 
 .cafe-info div {
@@ -146,6 +192,7 @@ h1 {
     width: 30%;
     color: var(--color);
     flex-basis: 50%;
+    font-weight: bold;
 }
 
 .links div {
@@ -170,7 +217,12 @@ h1 {
     margin: 0.5rem 1.5rem;
     font-size: 1.2rem;
     border-radius: 5px;
-    transition: background-color 0.2s;
+    transition: background-color 0.5s;
+}
+
+.links a:hover {
+    background-color: rgba(224, 192, 151, 1);
+    color: var(--background-color);
 }
 
 .div-breaker {
@@ -178,7 +230,7 @@ h1 {
 }
 
 /* Menu Section Styling */
-#menu {
+.container-1 {
     border-radius: 10px;
     min-height: 100vh;
     color: var(--background-color);
@@ -186,11 +238,6 @@ h1 {
     mix-blend-mode: color-burn;
 }
 
-#menu h3 {
-    padding-top: 5px;
-    font-size: 4rem;
-    text-align: center;
-}
 
 #menu .items-container {
     display: flex;
@@ -235,7 +282,31 @@ h1 {
 
 /* Review Section Styling */
 
-#reviews {
-    clip-path: polygon(0 10%, 50% 0, 100% 10%, 100% 90%, 50% 100%, 0 90%);
-    height: 100vh;
+.reviews {
+    display: flex;
+    min-height: 100vh;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.reviews:first-child {
+    height: 100%;
+}
+
+.reviews div a {
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 2.2;
+    height: 3rem;
+    width: 13rem;
+    border: 1px solid var(--color);
+    text-align: center;
+    color: var(--color);
+    transition: background-color 0.3s ease-in-out;
+}
+
+.reviews div a:hover {
+    background-color: var(--color);
+    color: white;
 }

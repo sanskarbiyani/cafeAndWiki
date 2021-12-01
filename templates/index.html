@@ -4,14 +4,74 @@
 <title>All Cafe's</title>
 {% endblock %}
 
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/mainStyles.css') }}">
+{% endblock %}
+
+{% block nav %}
+{% endblock %}
+
+
 {% block content %}
-<div class="container mt-4 d-flex justify-content-evenly">
+
+{% if show_landing %}
+<section class="main-container" id="landing-page">
+{% else %}
+<section class="main-container" id="landing-page" style="display: none;">
+{% endif %}
+    <div class="search-cafe">
+        <div>
+            <h2>Coffee while Coding?</h2>
+            <span class="all-cafe" onclick="displayCafe()">Options</span>
+            <span class="cafe-search" onclick="openSearch()">Search</span>
+        </div>
+    </div>
+    <div class="register">
+        <div>
+            <h2>Own a cafe?</h2>
+            <span class="register-cafe">Register</span>
+        </div>
+    </div>
+</section>
+
+{% if show_landing %}
+<section id="search-container">
+{% else %}
+<section id="search-container" style="display: none;">
+{% endif %}
+    <form action="{{ url_for('search') }}" method="get" onsubmit="return validate();" name="queryForm">
+        <div class="search-parameters">
+            <p>Applied Parameters</p>
+        </div>
+        <input type="text" name="query" id="text" placeholder="Enter Query..">
+        <input type="text" name="parameter" hidden="true">
+        <p class="error"></p>
+        <div class="parameters">
+            <p>Search Paramters Options</p>
+            <span onclick="addParameter(this)">Country</span>
+            <span onclick="addParameter(this)">City</span>
+            <span onclick="addParameter(this)">State</span>
+            <span onclick="addParameter(this)">Locality</span>
+            <span onclick="addParameter(this)">Name</span>
+        </div>
+        <div>
+
+        </div>
+        <input type="submit" value="Search">
+    </form>
+</section>
+
+{% if not show_landing %}
+<section class="container" id="cafe-container">
+{% else %}
+<section class="container" id="cafe-container" style="display: none;" >
+{% endif %}
     {% for cafe in cafe_list %}
-        <div class="card p-2" style="width: 18rem; background-color: #5C3D2E; border-radius: 10px;">
-            <div class="card-body text-light">
+        <div class="card p-2 cafe">
+            <div class="card-body text-light cafe-body">
                 <img src="{{ url_for('static', filename='img/index.jpg') }}" class="card-image-top" alt="">
-                <h4 class="card-title mt-3" style="color: #E0C097;">{{ cafe.name }}</h4>
-                <h6 class="card-subtitle mt-1 mb-3" style="color: #E0C097; opacity: 0.5;">
+                <h4 class="card-title mt-4 mb-3">{{ cafe.name }}</h4>
+                <h6 class="card-subtitle mt-1 mb-5" >
                     {{ cafe.address.main }}, 
                     {% if cafe.address.near %}
                         Near {{cafe.address.near}} 
@@ -22,9 +82,14 @@
                     {{cafe.address.state}}, {{cafe.address.country}}
                 </h6>
                 {# <p class="card-text" style="color: #E0C097;">{{cafe.description}} </p> #}
-                <a href="{{ url_for('get_cafe', cafe_id = cafe.id) }}" class="card-link" style="color: #E0C097;">More..</a>
+                <a href="{{ url_for('get_cafe', cafe_id = cafe.id) }}" class="card-link">More</a>
             </div>
         </div>
     {% endfor %}
-</div>
+    <a onclick="back()" class="back">
+        <i class="fas fa-chevron-left"></i>
+        Back
+    </a>
+</section>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 {% endblock %}

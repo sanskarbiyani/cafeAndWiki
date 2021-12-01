@@ -21,7 +21,7 @@
                         <a class="nav-link" href="{{ url_for('get_all_cafe') }}">Search</a>
                     </li>
                 </ul>
-                <span class="navbar-brand" style="font-size: 1.8rem;">
+                <span class="navbar-brand cafe-name">
                     {{ cafe.name }}
                 </span>
                 <ul class="navbar-nav">
@@ -50,7 +50,7 @@
 <div class="background-image">
     <img src="{{ url_for('static', filename='img/coffee1.jpg') }}" alt="">
 </div>
-<div class="container-fluid p-3 vh-100" id="home">
+<section class="container-fluid p-3 vh-100" id="home">
     <a href="{{ url_for('get_all_cafe') }}" class="back">
         <i class="fas fa-chevron-left"></i>
         Back
@@ -134,12 +134,12 @@
             </div>
         </div>
     </div>
-</div>
+</section>
 
 <div class="container-fluid div-breaker"></div>
 
 <!-- Menu -->
-<div class="container" id="menu">
+<section class="container container-1" id="menu">
     <h3>Menu</h3>
     <div class="items-container">
         {% for group_name, group in cafe.menu.items() %}
@@ -157,9 +157,24 @@
         </div>
         <div></div>
     </div>
-</div>
+</section>
+
 <div class="container-fluid div-breaker"></div>
-<div class="container" id="reviews"> Hello</div>
+
+<section class="container container-1" id="reviews">
+    <h3>Reviews</h3>
+    <div class="reviews">
+        <div>
+            <h4>
+                Visited this place before
+            </h4>
+            <a href="">Enter your thoughts</a>
+        </div>
+        <div>
+            <h4>Hello, content to be decided.</h4>
+        </div>
+    </div>
+</section>
 <script src="{{ url_for('static', filename='js/cafe.js') }}"></script>
 {% endblock %}
 

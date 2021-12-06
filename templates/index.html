@@ -14,7 +14,7 @@
 
 {% block content %}
 
-{% if show_landing %}
+<!-- {% if show_landing %}
 <section class="main-container" id="landing-page">
 {% else %}
 <section class="main-container" id="landing-page" style="display: none;">
@@ -105,6 +105,62 @@
         <i class="fas fa-chevron-left"></i>
         Back
     </a>
+</section> -->
+
+<section id="cafe-registration">
+    <div class="registration-container">
+        <h2 class="form-heading">Cafe Details</h2>
+        <form action="" name="registrationForm" id="registration-form">
+            <div class="first page">
+                <div class="detail-container required">
+                    <input type="text" id="cafe-name" name="cafeName" onfocusout="checkValuePresent(this)">
+                    <label for="cafe-name">Name</label>
+                </div>
+                <div class="detail-container required">
+                    <input type="text" id="cafe-phonenumber" name="cafePhonenumber" onfocusout="checkValuePresent(this)">
+                    <label for="cafe-phonenumber">Phone Number</label>
+                </div>
+                <div class="detail-container required">
+                    <input type="text" id="cafe-email" name="cafeEmail" onfocusout="checkValuePresent(this)">
+                    <label for="cafe-email">Email</label>
+                </div>
+                <div class="detail-container required rating">
+                    <input type="text" id="cafe-wifirating" name="cafeWifirating" onfocusout="checkValuePresent(this)">
+                    <label for="cafe-wifirating">Wifi Rating</label>
+                </div>
+                <div class="detail-container required rating">
+                    <input type="text" id="cafe-socket" name="cafeSocket" onfocusout="checkValuePresent(this)">
+                    <label for="cafe-socket">Socket Rating</label>
+                </div>
+                <p class="registration-error error"></p>
+            </div>
+            <div class="page" style="display: none;">
+                <div class="detail-container">
+                    <input type="text" id="menu-header" name="menuHeader" onfocusout="checkValuePresent(this)">
+                    <label for="menu-header">Menu Header Name</label>
+                </div>
+            </div>
+            <p class="registration-error error"></p>
+            <input type="submit" style="display: none;">
+            <a href="#" class="backButton" onclick="changePage(2)" style="display: none;">Back</a>
+            <a href="#" class="nextButton" onclick="changePage(1)">Next</a>
+        </form>
+        <div class="progress">
+            <div class="progress-track"></div>
+            <div class="progress-step active">
+                <span>Start</span>
+            </div>
+            <div class="progress-step">
+                <span>Menu</span>
+            </div>
+            <div class="progress-step">
+                <span>Background Images</span>
+            </div>
+            <div class="progress-step">
+                <span>Finish</span>
+            </div>
+        </div>
+    </div>
 </section>
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 {% endblock %}

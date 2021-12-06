@@ -313,3 +313,214 @@ form a:hover {
 .cafe a:hover {
     text-decoration: underline;
 }
+
+.second {
+    display: none;
+}
+
+/* REGISTRATION FORM */
+
+#registration-form {
+    margin-left: 20px;
+    margin-bottom: 40px;
+    width: 90%;
+    text-align: center;
+}
+
+#registration-form .page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#registration-form .detail-container {
+    position: relative;
+    margin: auto;
+    padding: 0.5rem;
+    flex: 1 1 100%;
+    margin-bottom: 10px;
+}
+
+#registration-form .detail-container::before {
+    content: "";
+    position: absolute;
+    display: block;
+    margin: auto;
+    bottom: 7px;
+    width: 0px;
+    height: 2px;
+    background: transparent;
+    transition: width 0.5s ease, background-color 0.5s ease;
+}
+
+#registration-form .detail-container:focus-within:before {
+    width: 98%;
+    background: var(--background-color);
+}
+
+
+#registration-form label {
+    position: absolute;
+    top: 35%;
+    left: 20px;
+    font-size: 1.05rem;
+    font-family: var(--section-header);
+    font-weight: 700;
+    font-style: italic;
+    color: rgba(92, 61, 46, 1);
+    transition: top 0.2s ease-in, left 0.2s ease-in, font-size 0.2s ease-in;
+}
+
+#registration-form input {
+    border: 0;
+    border-bottom: 1px solid rgba(92, 61, 46, 0.5);
+    background-color: rgba(92, 61, 46, 0);
+    border-radius: 0;
+    padding: 2px 15% 0 10px;
+    position: relative;
+    z-index: 2;
+    text-align: left;
+    font-size: 1rem;
+    font: normal 1rem var(--section-header);
+    height: 2.5rem;
+    width: 100%;
+    margin: 0;
+}
+
+#registration-form input:focus+label,
+.input-active label {
+    top: -5px !important;
+    font-size: 1rem !important;
+}
+
+
+.required:after {
+    content: "Required";
+    position: absolute;
+    right: 25px;
+    bottom: 9px;
+    font: italic 1.1rem var(--section-header);
+    color: rgba(92, 61, 46, 0.96);
+}
+
+.rating {
+    width: 45%;
+    display: inline-block;
+    flex: 0 1 45% !important;
+}
+
+#registration-form a {
+    width: 40%;
+    text-align: center;
+}
+
+.second-page {
+    display: none;
+}
+
+/* CAFE REGISTRATION */
+
+#cafe-registration {
+    width: 100vw;
+    height: 100vh;
+    padding: 5vh 0;
+}
+
+.registration-container {
+    width: 80vw;
+    height: 90vh;
+    background-color: rgba(224, 192, 151, 0.5);
+    margin: auto;
+    border-top-left-radius: 100px;
+    border-bottom-right-radius: 100px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 1.5rem;
+}
+
+.registration-container h2 {
+    text-align: center;
+    font-family: var(--header);
+    height: 3.5rem;
+    line-height: 1.8;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--background-color);
+}
+
+.progress {
+    width: 85%;
+    height: 22px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-left: 14%;
+    background: rgba(224, 192, 151, 0);
+    padding: 0 1rem;
+}
+
+.progress-track {
+    position: absolute;
+    width: 72%;
+    height: 5px;
+    left: 3%;
+    background-color: rgba(92, 61, 46, 0.3);
+    top: 40%;
+}
+
+.progress-step {
+    position: relative;
+    width: 100%;
+    text-align: left;
+    position: relative;
+    overflow-y: visible;
+}
+
+.progress-step::before {
+    content: "";
+    height: 22px;
+    width: 22px;
+    border-radius: 100%;
+    position: absolute;
+    background: var(--color);
+    color: var(--color);
+    border: 4px solid var(--background-color);
+    z-index: 1;
+    cursor: pointer;
+}
+
+.progress-step::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 40%;
+    width: 0%;
+    height: 5px;
+    background: var(--background-color);
+    transition: width 0.5s ease-in;
+}
+
+.progress-step.active::before {
+    background: var(--background-color);
+    border-top-width: 1px;
+    border-left-width: 6px;
+}
+
+.progress-step.active:last-child:after {
+    width: 0%;
+}
+
+.progress-step.active::after {
+    width: 100%;
+}
+
+.progress-step span {
+    display: none;
+    position: absolute;
+    top: 100%;
+    background: blue;
+}
+
+.progress-step:hover span {
+    display: block;
+}

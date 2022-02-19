@@ -1,5 +1,7 @@
 * {
     box-sizing: border-box;
+    scrollbar-color: var(--background-color) transparent;
+    scrollbar-width: thin;
 }
 
 :root {
@@ -8,7 +10,7 @@
     /* --color: rgb(92, 61, 46);
     --background-color: rgb(224, 192, 151); */
     --header: 'Pacifico', cursive;
-    --section-header: 'Nunito Sans', sans-serif;
+    --section-header: 'Source Sans 3', sans-serif;
     --normal: 'Caveat', cursive;
 }
 
@@ -21,6 +23,43 @@ body {
 
 }
 
+/* Selection Color */
+
+::-moz-selection {
+    color: var(--color);
+    background-color: rgba(92, 61, 46, 0.75);
+}
+
+::selection {
+    color: var(--color);
+    background-color: rgba(92, 61, 46, 0.75);
+}
+
+/* Scroll Bar */
+
+/* For chrome, safari, etc.. */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px transparent;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgba(92, 61, 46, 0.7);
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #b30000;
+}
+
 /* Landing Page */
 
 .main-container {
@@ -31,6 +70,25 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+.lnk-register {
+    font-size: 2rem;
+    margin-top: 2rem;
+    display: inline-block;
+    /* width: 12rem; */
+    color: var(--color);
+    text-decoration: none;
+    border: 1px solid var(--color);
+    padding: 0 2.5rem;
+    font-family: var(--normal);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.lnk-register:hover {
+    color: var(--background-color);
+    background-color: var(--color);
 }
 
 .search-cafe,
@@ -190,7 +248,7 @@ form a:hover {
 
 form a {
     display: inline-block;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     text-decoration: none;
     line-height: 2;
 }
@@ -314,10 +372,6 @@ form a:hover {
     text-decoration: underline;
 }
 
-.second {
-    display: none;
-}
-
 /* REGISTRATION FORM */
 
 #registration-form {
@@ -333,12 +387,18 @@ form a:hover {
     justify-content: space-between;
 }
 
+#registration-form .form-heading {
+    flex-basis: 100%;
+}
+
 #registration-form .detail-container {
     position: relative;
     margin: auto;
     padding: 0.5rem;
-    flex: 1 1 100%;
+    flex: 1 1 50%;
     margin-bottom: 10px;
+    height: 3.2rem;
+    line-height: 2;
 }
 
 #registration-form .detail-container::before {
@@ -346,7 +406,7 @@ form a:hover {
     position: absolute;
     display: block;
     margin: auto;
-    bottom: 7px;
+    bottom: 15px;
     width: 0px;
     height: 2px;
     background: transparent;
@@ -361,7 +421,7 @@ form a:hover {
 
 #registration-form label {
     position: absolute;
-    top: 35%;
+    top: 16%;
     left: 20px;
     font-size: 1.05rem;
     font-family: var(--section-header);
@@ -384,12 +444,13 @@ form a:hover {
     font: normal 1rem var(--section-header);
     height: 2.5rem;
     width: 100%;
+    height: 68%;
     margin: 0;
 }
 
 #registration-form input:focus+label,
 .input-active label {
-    top: -5px !important;
+    top: -15px !important;
     font-size: 1rem !important;
 }
 
@@ -398,7 +459,7 @@ form a:hover {
     content: "Required";
     position: absolute;
     right: 25px;
-    bottom: 9px;
+    bottom: 15px;
     font: italic 1.1rem var(--section-header);
     color: rgba(92, 61, 46, 0.96);
 }
@@ -416,6 +477,224 @@ form a:hover {
 
 .second-page {
     display: none;
+}
+
+.menu-input {
+    /* flex: 1 1 45% !important; */
+    flex-basis: 45%;
+    font-size: 1.5rem;
+    font-family: var(--header);
+}
+
+.menu-header-input {
+    opacity: 0.5;
+    text-align: center;
+    padding: 0 !important;
+}
+
+.menu-header-input::before {
+    bottom: 0 !important;
+}
+
+.menu-header-input:focus {
+    outline: none;
+}
+
+.current-menu-details {
+    height: 10rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    text-align: center;
+    padding: 2rem 1rem 0;
+    color: var(--background-color);
+    visibility: hidden;
+}
+
+.current-menu-details div {
+    font: 1.15rem var(--section-header);
+    font-style: italic;
+}
+
+.current-menu-details>.header span {
+    border-bottom: 2px solid var(--background-color);
+}
+
+.current-menu-details>.header {
+    display: flex;
+    font-weight: bold;
+    font-style: normal;
+    margin-bottom: 0.5rem;
+    font-style: normal;
+    position: absolute;
+    top: 0;
+    width: 90%;
+}
+
+.current-menu-details>.items {
+    opacity: 0.75;
+}
+
+.current-menu-details div span {
+    display: inline-block;
+    width: 20%;
+}
+
+.current-menu-details div span:first-child {
+    width: 75%;
+    margin-right: 0.5rem;
+}
+
+.menu-item-input {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.menu-item-input>a {
+    cursor: pointer;
+}
+
+#registration-form input::placeholder {
+    color: var(--background-color);
+}
+
+#registration-form input[type=text] {
+    flex-basis: 65%;
+    padding-right: 10px;
+    color: var(--background-color);
+    /* text-align: center; */
+    font-size: 1.1rem;
+}
+
+#registration-form input[type=text]:focus {
+    border-bottom: 2px solid rgb(92, 61, 46) !important;
+}
+
+input[type=number]:focus {
+    outline: none;
+    /* border: none; */
+    border-bottom: 2px solid rgb(92, 61, 46) !important;
+}
+
+/* To remove the arrow from the input type number in chrome*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#registration-form input[type=number] {
+    -moz-appearance: textfield;
+    padding-right: 10px;
+    flex-basis: 15%;
+    text-align: center;
+    color: var(--background-color);
+}
+
+a.add-menu-button,
+a.add-menu-part {
+    height: 2.5rem;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    flex-basis: 40%;
+}
+
+.error.coffee-details {
+    font-size: 1rem;
+    flex-basis: 100%;
+    margin-top: 0.3rem;
+    margin-bottom: 0;
+}
+
+.menu-content {
+    /* flex: 1 1 45% !important; */
+    flex-basis: 45%;
+    color: var(--background-color);
+}
+
+.menu-content>h4 {
+    font-size: 1.6rem;
+    font-family: var(--header);
+    padding: 0.5rem;
+}
+
+.menu-part {
+    padding: 0 1.5rem;
+    position: relative;
+}
+
+.menu-part>h6 {
+    font-size: 1.2rem;
+    font-family: var(--section-header);
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.menu-group {
+    max-height: 7rem;
+    overflow: auto;
+}
+
+.menu-group>.header {
+    display: flex;
+    font-family: var(--section-header);
+}
+
+.menu-group>.header span {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.menu-part::after {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 400;
+    content: "\f0da";
+}
+
+.menu-part:hover::after {
+    content: "\f0d7";
+}
+
+.menu-group>.items {
+    height: 0;
+    transition: height 500ms ease;
+}
+
+.menu-part:hover .items {
+    height: 7rem;
+}
+
+.menu-group>.items div {
+    display: flex;
+}
+
+.menu-group>.items div span {
+    display: inline-block;
+}
+
+.menu-group div span:first-child {
+    width: 75%;
+}
+
+#registration-form>input[type=submit] {
+    /* flex-basis: 40%; */
+    width: 50%;
+    text-align: center;
+    margin-top: 1rem;
+    line-height: 2;
+    padding: 0 1rem;
+    height: 3rem;
+    border: 2px solid var(--background-color);
+    background-color: rgba(224, 192, 151, 0.5);
+    color: var(--background-color);
+    border-radius: 20px;
+    font-size: 1.4rem;
+    font-family: var(--header);
 }
 
 /* CAFE REGISTRATION */
@@ -444,7 +723,7 @@ form a:hover {
     height: 3.5rem;
     line-height: 1.8;
     font-size: 2.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     color: var(--background-color);
 }
 

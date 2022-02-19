@@ -1,11 +1,20 @@
-window.addEventListener('load', openSearch);
-document.queryForm.reset.addEventListener('click', removeParameter);
+// window.addEventListener('load', openSearch);
+// document.queryForm.reset.addEventListener('click', removeParameter);
 
+var menuItems = {"header": "", "items": []};
 function displayCafe(){
     const cafeContainer = document.getElementById("cafe-container");
     cafeContainer.style.display = "flex";
     const landingElem = document.getElementById("landing-page");
     landingElem.style.display = "none";
+}
+
+function displayRegistrationForm(){
+    const landingElem = document.getElementById("landing-page");
+    landingElem.style.display = "none";
+    const form = document.getElementById('cafe-registration');
+    form.style.display = "block";
+    window['currRegistrationPage'] = 0;
 }
 
 // Go back to Home page
@@ -122,56 +131,4 @@ function validate(event){
         return false;
     }
     return true;
-}
-
-function checkValuePresent(elem){
-    if (elem.value.length > 0){
-        elem.parentElement.classList.add('input-active');
-    }
-    const errorElem = document.getElementsByClassName('registration-error')[0];
-    errorElem.innerHTML = "";
-}
-
-function changePage(currPage){
-    console.log(currPage);
-    const form = document.registrationForm;
-    // Not Appending the error just after the div contaning the field because it causes problems with the layout.
-    // We can append the sibling element using functions like:
-        // 1. beforeElement();
-        // 2. insertAdjacentHTML(); --> Do not use createElement() with this.
-    // StackOverflow link: https://stackoverflow.com/questions/21422337/append-element-as-sibling-after-element
-    const errorElem = document.getElementsByClassName('registration-error')[0];
-    if (form.cafeName.value.length == 0){
-        form.cafeName.focus();
-        errorElem.innerHTML = '<i class="fas fa-exclamation"> &nbsp;Name Cannot be empty!';
-        return;
-    } else if (form.cafePhonenumber.value.length == 0) {
-        form.cafePhonenumber.focus();
-        errorElem.innerHTML = '<i class="fas fa-exclamation"> &nbsp;Phone Number Cannot be empty!';
-        return
-    } else if (form.cafeEmail.value.length == 0) {
-        form.cafeEmail.focus();
-        errorElem.innerHTML = '<i class="fas fa-exclamation"> &nbsp;Email Cannot be empty!';
-        return 
-    } else if (form.cafeWifirating.value.length == 0) {
-        form.cafeWifirating.focus();
-        errorElem.innerHTML = '<i class="fas fa-exclamation"> &nbsp;Wifi Rating Cannot be empty!';
-        return
-    } else if (form.cafeSocket.value.length == 0) {
-        form.cafeSocket.focus();
-        errorElem.innerHTML = '<i class="fas fa-exclamation"> &nbsp;Socket Rating Cannot be empty!';
-        return
-    } else {
-        if (currPage == 1){
-            const activeElem = document.getElementsByClassName('active');
-            activeElem[activeElem.length - 1].nextElementSibling.classList.add('active');
-            const backButton = document.getElementsByClassName('backButton')[0];
-            backButton.style.display = "inline-block";
-            const pages = document.getElementsByClassName('page');
-            pages[0].style.display = "none";
-            pages[1].style.display = "flex";
-            const formHeader = document.getElementsByClassName('form-heading')[0];
-            formHeader.innerHTML = "Menu Details";
-        }
-    }
 }

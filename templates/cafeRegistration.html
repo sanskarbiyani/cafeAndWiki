@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-<title>All Cafe's</title>
+<title>Register Cafe</title>
 {% endblock %}
 
 {% block styles %}
@@ -13,108 +13,14 @@
 
 
 {% block content %}
-
-{% if show_landing %}
-<section class="main-container" id="landing-page">
-{% else %}
-<section class="main-container" id="landing-page" style="display: none;">
-{% endif %}
-    <div class="search-cafe">
-        <div>
-            <h2>Coffee while Coding?</h2>
-            <span class="all-cafe" onclick="displayCafe()">Options</span>
-        </div>
-    </div>
-    <div class="register">
-        <div>
-            <h2>Own a cafe?</h2>
-            <a href="{{ url_for('register') }}" class="lnk-register">Register Cafe</a>
-        </div>
-    </div>
-</section>
-
-{% if not show_landing %}
-<section id="cafe-container">
-{% else %}
-<section id="cafe-container" style="display: none;" >
-{% endif %}
-    <div class="form">
-        <form action="{{ url_for('search') }}" method="GET" onsubmit="return validate();" name="queryForm">
-            <div class="search-parameters">
-                <p>Applied Parameters</p>
-            </div>
-            <input type="text" name="query" id="text" placeholder="Enter Query..">
-            <input type="text" name="parameter" hidden="true">
-            <p class="error"></p>
-            <div class="parameters">
-                <p>Search Paramters Options</p>
-                <span onclick="addParameter(this)">Country</span>
-                <span onclick="addParameter(this)">City</span>
-                <span onclick="addParameter(this)">State</span>
-                <span onclick="addParameter(this)">Locality</span>
-                <span onclick="addParameter(this)">Name</span>
-            </div>
-            <div>
-    
-            </div>
-            <input type="submit" value="Search">
-            <a href="{{ url_for('search') }}">Reset</a>
-        </form>
-    </div>
-    <div class="cafe-options">
-        {% for cafe in cafe_list %}
-            <div class="card p-2 cafe">
-                <div class="card-body text-light cafe-body">
-                    <img src="{{ url_for('static', filename='img/index.jpg') }}" class="card-image-top" alt="">
-                    <h4 class="card-title mt-4 mb-3">{{ cafe.name }}</h4>
-                    <h6 class="card-subtitle mt-1 mb-5" >
-                        {{ cafe.address.main }}, 
-                        {% if cafe.address.near %}
-                            Near {{cafe.address.near}} 
-                        {% endif %}
-                        <br>
-                        {{cafe.address.locality}}, {{cafe.address.city}}
-                        <br>
-                        {{cafe.address.state}}, {{cafe.address.country}}
-                    </h6>
-                    {# <p class="card-text" style="color: #E0C097;">{{cafe.description}} </p> #}
-                    <a href="{{ url_for('get_cafe', cafe_id = cafe.id) }}" class="card-link">More</a>
-                </div>
-            </div>
-            <div class="card p-2 cafe">
-                <div class="card-body text-light cafe-body">
-                    <img src="{{ url_for('static', filename='img/index.jpg') }}" class="card-image-top" alt="">
-                    <h4 class="card-title mt-4 mb-3">{{ cafe.name }}</h4>
-                    <h6 class="card-subtitle mt-1 mb-5" >
-                        {{ cafe.address.main }}, 
-                        {% if cafe.address.near %}
-                            Near {{cafe.address.near}} 
-                        {% endif %}
-                        <br>
-                        {{cafe.address.locality}}, {{cafe.address.city}}
-                        <br>
-                        {{cafe.address.state}}, {{cafe.address.country}}
-                    </h6>
-                    {# <p class="card-text" style="color: #E0C097;">{{cafe.description}} </p> #}
-                    <a href="{{ url_for('get_cafe', cafe_id = cafe.id) }}" class="card-link">More</a>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
-    <a onclick="back()" class="back">
-        <i class="fas fa-chevron-left"></i>
-        Back
-    </a>
-</section>
-
-<section id="cafe-registration" style="display: none;">
+<section id="cafe-registration">
     <div class="registration-container">
         
-        <form action="" name="registrationForm" id="registration-form" onsubmit="return preventSubmit(event)">
+        <form action="" name="registrationForm" id="registration-form" onsubmit="return preventSubmit(event)" autocomplete="off">
            
             <div class="first page">
                 <h2 class="form-heading">Cafe Details</h2>
-                <div class="detail-container required">
+                <div class="detail-container required" style="flex-basis: 100%;">
                     <input type="text" id="cafe-name" name="cafeName" onfocusout="checkValuePresent(this)">
                     <label for="cafe-name">Name</label>
                 </div>
@@ -127,11 +33,11 @@
                     <label for="cafe-email">Email</label>
                 </div>
                 <div class="detail-container required">
-                    <input type="text" id="cafe-wifirating" name="cafeWifirating" onfocusout="checkValuePresent(this)">
+                    <input type="number" id="cafe-wifirating" name="cafeWifirating" onfocusout="checkValuePresent(this)" min="0" max="5">
                     <label for="cafe-wifirating">Wifi Rating</label>
                 </div>
-                <div class="detail-container required" style="flex-basis: 50%;">
-                    <input type="text" id="cafe-socket" name="cafeSocket" onfocusout="checkValuePresent(this)">
+                <div class="detail-container required">
+                    <input type="number" id="cafe-socket" name="cafeSocket" onfocusout="checkValuePresent(this)" min="0" max="5">
                     <label for="cafe-socket">Socket Rating</label>
                 </div>
                 <div class="detail-container required" style="flex-basis: 100%;">
@@ -156,6 +62,7 @@
                 </div>
                 <p class="registration-error error"></p>
             </div>
+
             <div class="page second" style="display: none;">
                 <h2 class="form-heading">Menu Details</h2>
                 <div class="menu-input">
@@ -213,5 +120,5 @@
         </div>
     </div>
 </section>
-<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<script src="{{ url_for('static', filename='js/registerCafe.js') }}"></script>
 {% endblock %}

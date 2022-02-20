@@ -1,4 +1,6 @@
 window["currRegistrationPage"] = 0;
+menuItems = {};
+menu = {};
 
 function preventSubmit(event){
     return false;
@@ -78,7 +80,7 @@ function changePage(triggerElem){
         //     nextButton.style.display = "inline-block";
         // }
         if (triggerElem.classList.contains('nextButton')){
-            console.log(window.currRegistrationPage);
+            // console.log(window.currRegistrationPage);
             window.currRegistrationPage += 1;
             const currPage = window.currRegistrationPage;
             const activeElem = document.getElementsByClassName('active');
@@ -88,7 +90,7 @@ function changePage(triggerElem){
 
             // Change the page
             const pages = document.getElementsByClassName('page');
-            console.log(window.currRegistrationPage);
+            // console.log(window.currRegistrationPage);
             pages[currPage-1].style.display = "none";
             pages[currPage].style.display = "flex";
 
@@ -116,7 +118,6 @@ function changePage(triggerElem){
 
             // Change Page
             const pages = document.getElementsByClassName('page');
-            console.log(window.currRegistrationPage);
             pages[currPage].style.display = "none";
             pages[currPage-1].style.display = "flex";
         }
@@ -165,8 +166,8 @@ function addMenuItem(){
         table.appendChild(newRow);
         document.registrationForm.coffeeName.value="";
         document.registrationForm.coffeePrice.value="";
-        menuItems['items'] = [...menuItems['items'], {'coffeename': coffeeName,
-                                'coffeePrice': coffeePrice}];
+        menuItems[coffeeName] = coffeePrice;
+        console.log(menuItems);
         document.registrationForm.coffeeName.focus();
     }
 }
@@ -181,26 +182,33 @@ function keyAddItem(event){
 
 
 function addMenuPart(){
-    const header = document.getElementsByClassName('menu-header-input')[0].innerText;
+    var header = document.getElementsByClassName('menu-header-input')[0].innerText;
     if (header.length == 0 || header=="Enter Menu Header"){
         console.log('Header not given');
         return
-    } else if(menuItems['items'].length == 0){
+    } else if(menuItems.length == 0){
         console.log("Please enter Menu Items");
         return
     } else {
-        menuItems['header'] = header.trim();
+        header = header.trim();
+        // const part = {[header]: menuItems};
+        // console.log(part);
+        menu[header] = menuItems;
     }
+    // menu.forEach(item=>{
+    //     console.log(item);
+    // });
+    console.log(menu);
     const newGrp = document.createElement('DIV');
     newGrp.classList.add('menu-part');
-    var string = `<h6>${menuItems.header}</h6>
+    var string = `<h6>${header}</h6>
     <div class="menu-group">
         <div class="items">`
-    menuItems.items.forEach(elem => {
+    Object.keys(menuItems).forEach(key => {
         var newStr = `<div>
-                        <span>${elem.coffeename}</span>
+                        <span>${key}</span>
                         <span>...</span>
-                        <span>${elem.coffeePrice}</span>
+                        <span>${menuItems[key]}</span>
                     </div>`;
         string += newStr;
     })    
@@ -219,5 +227,63 @@ function addMenuPart(){
     newItems.classList.add('items');
     table.appendChild(newItems)
     table.style.visibility = "hidden";
-    menuItems.items = [];
+    menuItems = {};
+}
+
+function sendData(){
+    console.log(menu)
+    cafeDetails = {};
+    const form = document.registrationForm;
+    cafeDetails["name"] = form.cafeName.value;
+    cafeDetails['address'] = {
+        "main": form.cafeAddress.value,
+        "locality": form.cafeLocality.value,
+        "city": form.cafeCity.value,
+        "state": form.cafeState.value,
+        "country": form.cafeCountry.value
+    }
+    cafeDetails["contact"] = {
+        "email": form.cafeEmail.value,
+        "phone": form.cafePhonenumber.value,
+        "website": form.cafeWebsite.value
+    }
+    cafeDetails["established"] = form.cafeEstDate.value;
+    feature = {}
+    wifiRating = form.cafeWifirating.value;
+    socketRat = form.cafeSocket.value;
+    if(wifiRating>0){
+        feature["wifi"] = "Yes",
+        feature["wifiRating"] = wifiRating;
+    } else {
+        feature["wifi"] = "No"
+    }
+
+    if(socketRat>0){
+        feature["socket"] = "Yes",
+        feature["socketRating"] = wifiRating;
+    } else {
+        feature["socket"] = "No"
+    }
+    cafeDetails["features"] = feature;
+    cafeDetails["menu"] = menu;
+    cafeDetails["description"] = form.desc.value;
+    cafeDetails["owner"] = form.cafeOwner.value;
+
+    // Sending the data to the server
+    var xhr = new XMLHttpRequest();
+    var url = "http://127.0.0.1:5000/register";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    var result;
+    xhr.onreadystatechange = function(){
+        if (xhr.readyState === 4 && xhr.status === 200){
+            result = JSON.parse(this.responseText);
+            console.log(result.redirectURL);
+            window.location.replace(result.redirectURL)
+        }
+    }
+
+    var data = JSON.stringify(cafeDetails);
+    xhr.send(data);
 }

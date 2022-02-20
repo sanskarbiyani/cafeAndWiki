@@ -1,4 +1,5 @@
-from flask import Flask, render_template, redirect, request, make_response
+from email.mime import base
+from flask import Flask, jsonify, render_template, redirect, request, make_response, url_for
 from flask.helpers import flash, send_from_directory
 from flask_bootstrap import Bootstrap
 from bson import json_util
@@ -34,7 +35,7 @@ def get_all_cafe():
     return render_template('index.html', cafe_list=cafe_list, show_landing=True)
 
 
-@app.route("/cafes/<string:cafe_id>")
+@app.route("/cafe/<string:cafe_id>")
 def get_cafe(cafe_id):
     cafe = db.cafe.find_one({"_id": ObjectId(cafe_id)})
     return render_template('cafe.html', cafe=cafe)
@@ -85,6 +86,22 @@ def search():
 @app.get("/register")
 def register():
     return render_template('cafeRegistration.html')
+
+
+@app.post("/register")
+def register_post():
+    received_data = request.get_json()
+    pprint(received_data)
+    doc_id = db.cafe.insert_one(received_data).inserted_id
+    base_url = request.base_url.split("/")[:-1]
+    deli = "/"
+    url = deli.join(base_url) + "/" + url_for('get_cafe', cafe_id=doc_id)
+    print(base_url)
+    # print(url_for('get_cafe', cafe_id=doc_id))
+    res = {
+        "redirectURL": url
+    }
+    return jsonify(res), 200
 
 
 if __name__ == "__main__":

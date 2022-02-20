@@ -593,6 +593,29 @@ input::-webkit-inner-spin-button {
     color: var(--background-color);
 }
 
+input[type=date]:focus {
+    outline: none;
+}
+
+textarea {
+    width: 95%;
+    height: 4rem;
+    display: block;
+    margin: 0 auto;
+    background-color: transparent;
+    color: var(--background-color);
+    border: 1px solid var(--background-color);
+    border-radius: 10px;
+    padding: 0.2rem 1rem;
+    font-size: 1.1rem;
+    font-family: var(--section-header);
+    font-style: italic;
+}
+
+textarea::-webkit-input-placeholder {
+    color: var(--background-color);
+}
+
 a.add-menu-button,
 a.add-menu-part {
     height: 2.5rem;

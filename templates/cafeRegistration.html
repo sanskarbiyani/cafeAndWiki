@@ -16,13 +16,17 @@
 <section id="cafe-registration">
     <div class="registration-container">
         
-        <form action="" name="registrationForm" id="registration-form" onsubmit="return preventSubmit(event)" autocomplete="off">
+        <form action="" name="registrationForm" id="registration-form" onsubmit="event.preventDefault(); false" autocomplete="off">
            
             <div class="first page">
                 <h2 class="form-heading">Cafe Details</h2>
-                <div class="detail-container required" style="flex-basis: 100%;">
+                <div class="detail-container required">
                     <input type="text" id="cafe-name" name="cafeName" onfocusout="checkValuePresent(this)">
                     <label for="cafe-name">Name</label>
+                </div>
+                <div class="detail-container required">
+                    <input type="text" id="cafe-owner" name="cafeOwner" onfocusout="checkValuePresent(this)">
+                    <label for="cafe-owner">Owner Name</label>
                 </div>
                 <div class="detail-container required">
                     <input type="text" id="cafe-phonenumber" name="cafePhonenumber" onfocusout="checkValuePresent(this)">
@@ -31,14 +35,6 @@
                 <div class="detail-container required">
                     <input type="text" id="cafe-email" name="cafeEmail" onfocusout="checkValuePresent(this)">
                     <label for="cafe-email">Email</label>
-                </div>
-                <div class="detail-container required">
-                    <input type="number" id="cafe-wifirating" name="cafeWifirating" onfocusout="checkValuePresent(this)" min="0" max="5">
-                    <label for="cafe-wifirating">Wifi Rating</label>
-                </div>
-                <div class="detail-container required">
-                    <input type="number" id="cafe-socket" name="cafeSocket" onfocusout="checkValuePresent(this)" min="0" max="5">
-                    <label for="cafe-socket">Socket Rating</label>
                 </div>
                 <div class="detail-container required" style="flex-basis: 100%;">
                     <input type="text" id="cafe-address1" name="cafeAddress" onfocusout="checkValuePresent(this)">
@@ -63,7 +59,29 @@
                 <p class="registration-error error"></p>
             </div>
 
-            <div class="page second" style="display: none;">
+            <div class="page third" style="display: none;">
+                <h2 class="form-heading" style="margin-bottom: 5rem;">Other Details</h2>
+                <!-- <p>If feature not present, mark rating as 0</p> -->
+                <div class="detail-container required">
+                    <input type="number" id="cafe-wifirating" name="cafeWifirating" onfocusout="checkValuePresent(this)" min="0" max="5">
+                    <label for="cafe-wifirating">Wifi Rating</label>
+                </div>
+                <div class="detail-container required">
+                    <input type="number" id="cafe-socket" name="cafeSocket" onfocusout="checkValuePresent(this)" min="0" max="5">
+                    <label for="cafe-socket">Socket Rating</label>
+                </div>
+                <div class="detail-container">
+                    <input type="text" id="cafe-website" name="cafeWebsite" onfocusout="checkValuePresent(this)">
+                    <label for="cafe-website">Website</label>
+                </div>
+                <div class="detail-container">
+                    <input type="text" id="cafe-estDate" name="cafeEstDate" onfocus="checkValuePresent(this);(this.type='date')" onblur="if(!this.value)this.type='text'">
+                    <label for="cafe-estDate">Established Date</label>
+                </div>
+                <textarea name="desc" id="desc" placeholder="Description.."></textarea>
+            </div>
+
+            <div class="page third" style="display: none;">
                 <h2 class="form-heading">Menu Details</h2>
                 <div class="menu-input">
                     <div class="menu-header-input detail-container" 
@@ -95,12 +113,9 @@
                     <!-- <p>None</p> -->
                 </div>
             </div>
-            <div class="page third">
-
-            </div>
             <p class="registration-error error"></p>
             <a href="#" class="backButton" onclick="changePage(this)" style="display: none;">Back</a>
-            <input type="submit" style="display: none;" value="Submit Details">
+            <input type="submit" style="display: none;" value="Submit Details" onclick="sendData();" >
             <a href="#" class="nextButton" onclick="changePage(this)">Next</a>
         </form>
         <div class="progress">
